@@ -1,13 +1,12 @@
-/* See LICENSE file for copyright and license details. */
-
 /*
  * appearance
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mono:pixelsize=12:antialias=true:autohint=true";
-static char *font2[] = { "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
-static int borderpx = 2;
+// static char *font = "mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Fira Code Nerd Font:size=10:antialias=true:autohint=true";
+static char *font2[] = { "Fira Code Nerd Font:pixelsize=10:antialias=true:autohint=true" };
+static int borderpx = 20;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -17,7 +16,7 @@ static int borderpx = 2;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/sh";
+static char *shell = "/bin/zsh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
@@ -107,7 +106,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 1.0;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
@@ -249,38 +248,38 @@ static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NUL
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
+	// { XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
+	// { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
+	// { ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
+	// { XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
+	// { TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
+	// { TERMMOD,              XK_Next,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_c,           clipcopy,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
 	{ MODKEY,               XK_v,           clippaste,      {.i =  0} },
-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+	// { ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+	// { TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	// { ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+	// { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
-	{ MODKEY,               XK_k,           kscrollup,      {.i =  1} },
-	{ MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
-	{ MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
-	{ MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
-	{ MODKEY,               XK_u,           kscrollup,      {.i = -1} },
-	{ MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
-	{ MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
-	{ MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
-	{ TERMMOD,              XK_Up,          zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Down,        zoom,           {.f = -1} },
+	// { MODKEY,               XK_k,           kscrollup,      {.i =  1} },
+	// { MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
+	// { MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
+	// { MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
+	// { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
+	// { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
+	// { MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
+	// { MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
+	// { TERMMOD,              XK_Up,          zoom,           {.f = +1} },
+	// { TERMMOD,              XK_Down,        zoom,           {.f = -1} },
 	{ TERMMOD,              XK_K,           zoom,           {.f = +1} },
 	{ TERMMOD,              XK_J,           zoom,           {.f = -1} },
-	{ TERMMOD,              XK_U,           zoom,           {.f = +2} },
-	{ TERMMOD,              XK_D,           zoom,           {.f = -2} },
+	// { TERMMOD,              XK_U,           zoom,           {.f = +2} },
+	// { TERMMOD,              XK_D,           zoom,           {.f = -2} },
 	{ MODKEY,               XK_l,           externalpipe,   {.v = openurlcmd } },
 	{ MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
 	{ MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
